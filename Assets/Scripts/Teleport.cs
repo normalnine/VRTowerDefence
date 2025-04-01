@@ -61,8 +61,16 @@ public class Teleport : MonoBehaviour
             // 만약 닿은곳이 있다면?
             if (isHit)
             {
-                // 부딪힌 곳으로 플레이어 이동
-                player.position = hitInfo.point;
+                // 만약 닿은곳이 "Tower" 태그가 있다면 그 타워의 위치로 이동하고
+                if(hitInfo.collider.CompareTag("Tower"))
+                {
+                    player.position = hitInfo.collider.transform.position;
+                }
+                else
+                {
+                    // 그렇지 않다면 닿은곳에 이동하고 싶다.
+                    player.position = hitInfo.point;
+                }
             }
         }        
     }
